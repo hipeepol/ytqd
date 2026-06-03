@@ -10,26 +10,33 @@
           background-color: black;
           color: white;
           font-family: serif;
+          text-align: center;
+          font-size: 1em;
         }
         h1{
           font-family: serif;
           text-align: center;
           font-size: 4em;
+          margin: 15%;
         }
         button{
           font-family: serif;
-          font-size: 2em;
+          font-size: 1em;
+          padding: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>ytqd</h1>
-    
-    <div style = "text-align:center;">
+    <h1 id="title">ytqd</h1>
+
     <button type="button">previous</button>
     <button type="button">random</button>
     <button type="button">next</button>
-    </div>
+
+    <img src = "" alt = "hello." width = "75%">
+    <br> <p>hello.</p>
+
+    <button onclick="document.getElementById('title').scrollIntoView({behavior: 'smooth'})" type="button">go to top.</button>
     
   <script>
     
