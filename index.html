@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,17 +30,65 @@
 <body>
     <h1 id="title">ytqd</h1>
 
-    <button type="button">previous</button>
-    <button type="button">random</button>
-    <button type="button">next</button>
+    <button  id = "prev" type="button">previous</button>
+    <button id = "rand" type="button">random</button>
+    <button id = "next" type="button">next</button>
 
-    <br> <img src = "images/1.png" title = "fount this image on wikipedia and edited it https://commons.wikimedia.org/wiki/File:Pselectin.PNG" width = "75%">
+    <br> <img  id = "img" src = "images/1.png" title = "fount this image on wikipedia and edited it https://commons.wikimedia.org/wiki/File:Pselectin.PNG" width = "75%">
     <br> <p>a really cool p-selectin</p>
 
     <button onclick="document.getElementById('title').scrollIntoView({behavior: 'smooth'})" type="button">go to top.</button>
     
   <script>
-    
+      // Function to check if a specific image file exists
+    function checkFileExists(number) {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.src = number + '.png';
+            img.onload = () => resolve(true);  // File exists
+            img.onerror = () => resolve(false); // File does not exist
+        });
+    }
+
+    // Automatically find the highest image on page load
+    async function initializeGallery() {
+        let checkNum = 1;
+        let fileExists = true;
+
+        // Scan upward until an image fails to load
+        while (fileExists) {
+            fileExists = await checkFileExists(checkNum);
+            if (fileExists) {
+                maxImageNumber = checkNum; // Keep track of highest found
+                checkNum++;
+            }
+        }
+
+        // Set the initial view to the highest found number (e.g., 6)
+        currentImageNumber = maxImageNumber;
+        image.src = currentImageNumber + '.png';
+    }
+      // Start a counter variable at 1
+    const image = document.getElementById('img');
+    const nextButton = document.getElementById('next');
+    const prevButton = document.getElementById('prev');
+    // Click to add 1
+     nextButton.addEventListener('click', function() {
+        currentImageNumber++; // Adds 1 to the number
+        image.src = "images/" + currentImageNumber + '.png'; // Combines it back to "2.png"
+     });
+     // Click to subtract 1
+     prevButton.addEventListener('click', function() {
+        currentImageNumber--; // Subtracts 1 from the number
+        image.src = "images/" + currentImageNumber + '.png';
+    });
+    randomButton.addEventListener('click', function() {
+        const randomNumber = Math.floor(Math.random() * maxImageNumber) + 1;
+        currentImageNumber = randomNumber; 
+        // Change the image source
+        image.src = "images/" + currentImageNumber + '.png';
+
+    initializeGallery();
   </script>
 </body>
 </html>
