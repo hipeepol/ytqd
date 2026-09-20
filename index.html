@@ -29,18 +29,37 @@
 </head>
 <body>
     <h1 id="title">ytqd</h1>
+    
+    <button type="button" id="random">random</button>
 
-    <!-- <button type="button">previous</button>
-    <button type="button">random</button>
-    <button type="button">next</button> -->
-
-    <br> <img src = "images/1.png" title = "found this image on wikipedia and edited it https://commons.wikimedia.org/wiki/File:Pselectin.PNG" width = "50%">
-    <br> <p>a really cool p-selectin</p>
+    <br> <img src = "image" title = "title" width = "50%">
+    <br> <p id="caption"></p>
 
     <button onclick="document.getElementById('title').scrollIntoView({behavior: 'smooth'})" type="button">go to top.</button>
     
   <script>
-    
+    const images = [
+        { 
+            ima: 'images/1.png',
+            tit:'found this image on wikipedia and edited it https://commons.wikimedia.org/wiki/File:Pselectin.PNG',
+            cap: 'a really cool p-selectin'
+        }
+    ];
+      
+    const img = document.getElementById('image');
+    const button = document.getElementById('random');
+
+    function randoming() {
+        const random = Math.floor(Math.randm() * images.length);
+        const selected = images[random];
+         document.getElementById('image').src = selected.ima;
+        document.getElementById('title').textContent = selected.tit;
+        document.getElementById('caption').textContent = selected.cap;
+    }
+
+    randoming();
+
+    button.addEvent Listener('click', randoming);
   </script>
 </body>
 </html>
