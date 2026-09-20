@@ -50,7 +50,7 @@
     const button = document.getElementById('random');
 
     function randoming() {
-        const random = Math.floor(Math.randm() * images.length);
+        const random = Math.floor(Math.random() * images.length);
         const selected = images[random];
          document.getElementById('image').src = selected.ima;
         document.getElementById('title').textContent = selected.tit;
